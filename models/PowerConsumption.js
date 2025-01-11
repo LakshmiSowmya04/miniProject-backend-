@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     dailyPower: {
@@ -25,20 +25,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     applianceBreakdown: {
       type: DataTypes.JSON,
-      allowNull: true,
-    },
-    cost: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-    },
-    applianceName: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
   });
 
   PowerConsumption.associate = function (models) {
-    PowerConsumption.belongsTo(models.User, { foreignKey: "userId" });
+    PowerConsumption.belongsTo(models.User, {
+      foreignKey: "userId",
+      onDelete: "CASCADE",
+    });
   };
 
   return PowerConsumption;

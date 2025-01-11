@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
+const { Sequelize } = require("sequelize");
 const { User, PowerConsumption } = require("./models");
 const app = express();
 

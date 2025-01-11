@@ -11,18 +11,17 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   });
-
-  User.associate = function (models) {
-    User.hasMany(models.PowerConsumption, { foreignKey: "userId" });
-  };
 
   return User;
 };
