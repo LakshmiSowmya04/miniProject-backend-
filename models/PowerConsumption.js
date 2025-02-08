@@ -5,12 +5,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     date: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     dailyPower: {
@@ -26,14 +22,15 @@ module.exports = (sequelize, DataTypes) => {
     applianceBreakdown: {
       type: DataTypes.JSON,
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Users",
+        key: "id",
+      },
+    },
   });
-
-  PowerConsumption.associate = function (models) {
-    PowerConsumption.belongsTo(models.User, {
-      foreignKey: "userId",
-      onDelete: "CASCADE",
-    });
-  };
 
   return PowerConsumption;
 };
